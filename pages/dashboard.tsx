@@ -7,6 +7,7 @@ import ULHeading from '../components/atoms/Heading';
 import ULText from '../components/atoms/Text';
 import PrivateRoute from '../utils/privateRoute';
 import MoviesRoute, { MovieCategory } from '../backend/movies';
+import CommentRoute from '../backend/comments';
 
 function Dashboard({ user }) {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -15,15 +16,29 @@ function Dashboard({ user }) {
   React.useEffect(() => {
     console.log(user);
     AuthRoute.win = window;
-    let movieapi = new MoviesRoute();
-    /* movieapi
+    /* let movieapi = new MoviesRoute();
+    movieapi
       .getMovies(MovieCategory.TOP_RATED)
       .then((res) => {
         console.log(res.results);
         const result = res.results[0];
-        movieapi.getSingleMovie(result.id).then(resp=>{
-
-        });
+        const comment = new CommentRoute();
+        comment
+          .setMovieComment(result.id, user, 'stop lop')
+          .then(console.log)
+          .catch(console.log);
+        comment
+          .getMovieComments(result.id)
+          .then((res) => {
+            console.log('res', res);
+          })
+          .catch(console.log);
+        comment
+          .removeMovieComment(result.id, user.uid)
+          .then((res) => {
+            console.log('res', res);
+          })
+          .catch(console.log);
       })
       .catch((err) => console.log); */
     /* movieapi.searchMovies('game of thrones').then(console.log); */
