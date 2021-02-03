@@ -6,6 +6,7 @@ import ULButton from '../components/atoms/Button';
 import ULHeading from '../components/atoms/Heading';
 import ULText from '../components/atoms/Text';
 import PrivateRoute from '../utils/privateRoute';
+import MoviesRoute, { MovieCategory } from '../backend/movies';
 
 function Dashboard({ user }) {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -14,6 +15,18 @@ function Dashboard({ user }) {
   React.useEffect(() => {
     console.log(user);
     AuthRoute.win = window;
+    let movieapi = new MoviesRoute();
+    /* movieapi
+      .getMovies(MovieCategory.TOP_RATED)
+      .then((res) => {
+        console.log(res.results);
+        const result = res.results[0];
+        movieapi.getSingleMovie(result.id).then(resp=>{
+
+        });
+      })
+      .catch((err) => console.log); */
+    /* movieapi.searchMovies('game of thrones').then(console.log); */
   }, []);
 
   const signOut = () => {
