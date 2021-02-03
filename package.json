@@ -1,0 +1,51 @@
+{
+  "name": "nextjs-frontend-starter",
+  "version": "1.0.0",
+  "description": "nextjs starter app",
+  "main": "index.js",
+  "repository": "https://github.com/caleb-42/nextjs-frontend-starter.git",
+  "author": "caleb-42 <ewisco316@yahoo.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next -p 3600",
+    "next-build": "next build",
+    "build": "next build && cp -r ./.next ./build && cp -r ./public ./build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write pages/**/*.{js,jsx,ts,tsx}",
+    "lint": "eslint --fix pages/**/*.{js,jsx,ts,tsx}",
+    "start": "next start ./build -p 4600"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.0.2",
+    "@chakra-ui/react": "^1.1.2",
+    "@chakra-ui/theme-tools": "^1.0.2",
+    "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
+    "@zeit/next-typescript": "^1.1.1",
+    "babel-loader": "^8.2.2",
+    "dotenv": "^8.2.0",
+    "firebase": "^8.2.5",
+    "framer-motion": "^3.2.0",
+    "next": "^9.5.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.12.10",
+    "@babel/helper-create-regexp-features-plugin": "^7.12.7",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/runtime": "^7.11.2",
+    "@types/node": "^14.11.2",
+    "@types/react": "^16.9.49",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "typescript": "^4.0.3"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "extends": ["airbnb-typescript-prettier"],
+  "rules": {
+    "react/destructuring-assignment": 0,
+    "one-var": 0,
+    "linebreak-style": 0,
+    "one-var-declaration-per-line": 0,
+    "new-cap": 0,
+    "consistent-return": 0,
+    "no-param-reassign": 0,
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": true
+    }],
+    "import/no-dynamic-require": 0,
+    "global-require": 0,
+    "react-hooks/exhaustive-deps": 0,
+    "comma-dangle": 0,
+    "react/no-array-index-key": 0,
+    "react/jsx-props-no-spreading": 0,
+    "curly": ["error", "multi-line"],
+    "import/no-unresolved": [2, {
+      "commonjs": true
+    }],
+    "no-shadow": ["error", {
+      "allow": ["req", "res", "err"]
+    }],
+    "prettier/prettier": ["error", {
+      "endOfLine": "auto"
+    }],
+    "valid-jsdoc": [
+      "error",
+      {
+        "requireReturn": true,
+        "requireReturnType": true,
+        "requireParamDescription": false,
+        "requireReturnDescription": true
+      }
+    ],
+    "require-jsdoc": 0,
+    "react/jsx-no-bind": 0
+  }
+}
