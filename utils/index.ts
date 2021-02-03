@@ -22,4 +22,8 @@ export default class Helper {
 
     return axios(axiosData);
   }
+
+  static getImage(str: String) {
+    return `http://image.tmdb.org/t/p/w500/${str}`;
+  }
 }

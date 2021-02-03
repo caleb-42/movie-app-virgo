@@ -1,3 +1,4 @@
+import { MovieDetail, MovieItem } from '../../models/movie';
 import Helper from '../../utils';
 
 export enum MovieCategory {
@@ -49,7 +50,23 @@ export default class MoviesRoute {
     }
     try {
       let movies = await resp();
-      console.log(movies.data);
+      let data = movies?.data;
+      console.log({
+        adult: data?.adult,
+        backdrop_path: data?.backdrop_path,
+        genre_ids: data?.genre_ids,
+        id: data?.id,
+        original_language: data?.original_language,
+        vote_average: data?.vote_average,
+        original_title: data?.original_title,
+        overview: data?.overview,
+        popularity: data?.popularity,
+        poster_path: data?.poster_path,
+        vote_count: data?.vote_count,
+        release_date: data?.release_date,
+        title: data?.title,
+        video: data?.video,
+      } as MovieItem);
       return movies.data;
     } catch (e) {
       return { page: 0, results: [] };
@@ -62,7 +79,23 @@ export default class MoviesRoute {
         host: `${this.seachHost}?api_key=${key}&language=en-US&query=${text}`,
       });
       console.log(movie.data);
-      return movie.data;
+      let data = movie.data;
+      return {
+        adult: data?.adult,
+        backdrop_path: data?.backdrop_path,
+        genre_ids: data?.genre_ids,
+        id: data?.id,
+        original_language: data?.original_language,
+        vote_average: data?.vote_average,
+        original_title: data?.original_title,
+        overview: data?.overview,
+        popularity: data?.popularity,
+        poster_path: data?.poster_path,
+        vote_count: data?.vote_count,
+        release_date: data?.release_date,
+        title: data?.title,
+        video: data?.video,
+      } as MovieItem;
     } catch (e) {
       return null;
     }
@@ -75,6 +108,36 @@ export default class MoviesRoute {
       });
       console.log(movie.data);
       return movie.data;
+    } catch (e) {
+      return null;
+    }
+  }
+  async getCast(id: Number) {
+    try {
+      let cast = await Helper.axiosCall({
+        method: 'GET',
+        host: `${this.host}/${id}/credits?api_key=${key}`,
+      });
+      console.log(cast?.data?.cast);
+      let data = cast?.data?.cast;
+      return {
+        adult: data?.adult,
+        backdrop_path: data?.backdrop_path,
+        genre_ids: data?.genre_ids,
+        id: data?.id,
+        original_language: data?.original_language,
+        vote_average: data?.vote_average,
+        original_title: data?.original_title,
+        overview: data?.overview,
+        popularity: data?.popularity,
+        poster_path: data?.poster_path,
+        vote_count: data?.vote_count,
+        release_date: data?.release_date,
+        title: data?.title,
+        video: data?.video,
+        budget: data?.budget,
+        genres: data?.genres,
+      } as MovieDetail;
     } catch (e) {
       return null;
     }
