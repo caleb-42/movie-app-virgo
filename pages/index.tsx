@@ -5,6 +5,8 @@ import ULButton from '../components/atoms/Button';
 import ULHeading from '../components/atoms/Heading';
 import ULText from '../components/atoms/Text';
 import ULTextField from '../components/atoms/TextField';
+import SignIn from '../components/templates/signIn';
+import PublicRoute from '../utils/publicRoute';
 
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -17,28 +19,5 @@ export default function Home() {
     await auth.sendSignInLink(email);
   };
 
-  return (
-    <Box
-      display="flex"
-      height="100%"
-      justifyContent="center"
-      alignItems="center"
-      flexDir="column"
-    >
-      <ULHeading props={{ mb: '2rem' }} value="Auth" />
-
-      <Box m={3}>
-        <ULButton onClick={() => verifyEmail('babaewisco@gmail.com')}>
-          email
-        </ULButton>
-      </Box>
-
-      <ULButton
-        onClick={toggleColorMode}
-        colorScheme={colorMode == 'light' ? 'secondary' : 'primary'}
-      >
-        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
-      </ULButton>
-    </Box>
-  );
+  return <PublicRoute Component={() => <SignIn />} />;
 }

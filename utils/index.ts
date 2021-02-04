@@ -26,4 +26,24 @@ export default class Helper {
   static getImage(str: String) {
     return `http://image.tmdb.org/t/p/w500/${str}`;
   }
+
+  static breakpoints = (theme, size, dir) =>
+    ({
+      sm: {
+        down: `@media (max-width: ${theme.breakpoints['sm']})`,
+        up: `@media (min-width: ${theme.breakpoints['sm']})`,
+      }[dir],
+      md: {
+        down: `@media (max-width: ${theme.breakpoints['md']})`,
+        up: `@media (min-width: ${theme.breakpoints['md']})`,
+      }[dir],
+      lg: {
+        down: `@media (max-width: ${theme.breakpoints['lg']})`,
+        up: `@media (min-width: ${theme.breakpoints['lg']})`,
+      }[dir],
+      xl: {
+        down: `@media (max-width: ${theme.breakpoints['xl']})`,
+        up: `@media (min-width: ${theme.breakpoints['xl']})`,
+      }[dir],
+    }[size]);
 }

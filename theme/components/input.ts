@@ -6,13 +6,13 @@ export default {
     return {
       fontWeight: '600',
       //borderRadius: '20px',
-      color: props.colorMode === 'dark' ? '#7e7e7e' : '#333',
+      color: props.colorMode === 'dark' ? '#ddd' : '#888',
 
       padding: '20px 10px',
       '&:focus': css`
         outline: 0;
         border-color: transparent;
-        box-shadow: 0 0 1px 1px ${props.theme.colors.primaryColor.main};
+        box-shadow: 0 0 1px 1px #aaa;
       `,
       _placeholder: {
         fontWeight: 'normal',

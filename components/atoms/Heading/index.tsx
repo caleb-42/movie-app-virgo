@@ -13,7 +13,7 @@ export default function ULHeading({
   ...params
 }: IHeading) {
   const { colorMode } = useColorMode();
-  const styles = useStyleConfig('Heading', {});
+  //const styles = useStyleConfig('Heading', { sizes });
 
   let color;
   if (params.color === '#757575' && colorMode === 'dark') color = 'white';
