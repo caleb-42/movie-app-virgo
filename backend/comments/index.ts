@@ -1,5 +1,5 @@
-import { rejects } from 'assert';
 import firebase from '../firebase';
+import { Comment } from '../../models/comment';
 const { database } = firebase;
 
 export default class CommentRoute {
@@ -9,12 +9,12 @@ export default class CommentRoute {
       let v = await database()
         .ref(`comments/${movieId}/${user.uid}-${timeStamp}`)
         .set({
-          id: user.uid,
+          userId: user.uid,
           email: user.email,
           comment: comment,
-          movie: movieId,
+          movieId: movieId,
           timeStamp,
-        });
+        } as Comment);
       console.log(v);
       return v;
     } catch (e) {

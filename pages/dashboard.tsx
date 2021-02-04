@@ -16,7 +16,9 @@ function Dashboard({ user }) {
   React.useEffect(() => {
     console.log(user);
     AuthRoute.win = window;
-    /* let movieapi = new MoviesRoute();
+    let movieapi = new MoviesRoute();
+    movieapi.getCast(475557).then(console.log).catch(console.log);
+    /*
     movieapi
       .getMovies(MovieCategory.TOP_RATED)
       .then((res) => {

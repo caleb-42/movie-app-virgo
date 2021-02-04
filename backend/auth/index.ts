@@ -1,4 +1,5 @@
 import firebase from '../firebase';
+import { AuthUser } from '../../models/auth';
 const { database } = firebase;
 
 export default class AuthRoute {
@@ -49,7 +50,20 @@ export default class AuthRoute {
       let resp = await firebase.auth().signInWithEmailLink(email, link);
       console.log(resp.user);
       console.log('sent link');
-      this.SaveUserToLocal(resp.user);
+      this.SaveUserToLocal({
+        displayName: resp?.user?.displayName,
+        email: resp?.user?.email,
+        emailVerified: resp?.user?.emailVerified,
+        phoneNumber: resp?.user?.phoneNumber,
+        photoURL: resp?.user?.photoURL,
+        refreshToken: resp?.user?.refreshToken,
+        uid: resp?.user?.uid,
+        isAnonymous: resp?.user?.isAnonymous,
+        metadata: {
+          creationTime: resp?.user?.metadata.creationTime,
+          lastSignInTime: resp?.user?.metadata.lastSignInTime,
+        },
+      } as AuthUser);
     } catch (error) {
       throw error;
     }
