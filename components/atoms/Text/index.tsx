@@ -20,6 +20,7 @@ export default function ULText({ value = 'Text', props, ...params }: IText) {
   return (
     <Text
       fontSize={params.fontSize}
+      fontWeight={params.fontWeight}
       variant={params.variant}
       textAlign={params.align}
       color={color}

@@ -1,7 +1,9 @@
-import { Box, Button, useColorMode } from '@chakra-ui/react';
+import { Box, Button, Spinner, useColorMode } from '@chakra-ui/react';
 import React from 'react';
 import { useRouter } from 'next/router';
 import AuthRoute from '../backend/auth';
+import { css } from '@emotion/react';
+import PublicRoute from '../utils/publicRoute';
 
 export default function VerifySignin() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -12,11 +14,31 @@ export default function VerifySignin() {
     AuthRoute.win = window;
     const auth = new AuthRoute();
     let email = window.localStorage.getItem('emailForSignIn');
-    auth.signInWithLink(email).then(
-      (res) => Router.replace('/dashboard'),
-      (err) => Router.replace('/')
+    auth.currentUser().then(
+      (res) => {
+        Router.replace('/dashboard');
+      },
+      (err) => {
+        setTimeout(
+          () =>
+            auth.signInWithLink(email).then(
+              (res) => Router.replace('/dashboard'),
+              (err) => Router.replace('/')
+            ),
+          2000
+        );
+      }
     );
   }, []);
 
-  return <Box />;
+  return (
+    <Box
+      height="100%"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Spinner size="xl" />
+    </Box>
+  );
 }
