@@ -1,0 +1,62 @@
+html * {
+  font-family: Quicksand;
+}
+
+body,
+html {
+  height: 100%;
+  background-color: #f7f8ff;
+  overflow-x: hidden;
+}
+
+#__next {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  margin: auto;
+  height: 100%;
+  flex-grow: 1;
+  width: 100%;
+}
+main button {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.anim {
+  transition: all 0.4s ease-out;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.page-section {
+  transition: opacity 0.3s ease-out, visibility 0.3s ease-out,
+    -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out,
+    visibility 0.3s ease-out;
+  @media (min-width: 992px) {
+    &.crt-animate {
+      visibility: hidden;
+      opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0) scale3d(0.7, 0.7, 0.7);
+      transform: translate3d(0, 0, 0) scale3d(0.6, 0.6, 0.6);
+    }
+  }
+}
+.page-section.crt-animated {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}

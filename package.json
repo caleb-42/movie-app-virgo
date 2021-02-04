@@ -33,6 +33,9 @@
     "next": "^9.5.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-items-carousel": "^2.8.0",
+    "react-paginate": "^7.0.0",
+    "react-responsive": "^8.2.0",
     "yup": "^0.29.1"
   },
   "devDependencies": {
