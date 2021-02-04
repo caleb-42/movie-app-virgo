@@ -7,6 +7,7 @@ import ULText from '../components/atoms/Text';
 import ULTextField from '../components/atoms/TextField';
 
 export default function Home() {
+  const { colorMode, toggleColorMode } = useColorMode();
   React.useEffect(() => {
     AuthRoute.win = window;
   }, []);
@@ -31,6 +32,13 @@ export default function Home() {
           email
         </ULButton>
       </Box>
+
+      <ULButton
+        onClick={toggleColorMode}
+        colorScheme={colorMode == 'light' ? 'secondary' : 'primary'}
+      >
+        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+      </ULButton>
     </Box>
   );
 }
