@@ -11,7 +11,7 @@ const useToaster = () => {
       render: () => (
         <Box color="white" display="flex">
           <Box
-            bg={status == 'error' ? 'red.600' : 'teal.600'}
+            bg={status == 'error' ? 'red.600' : '#6cb93e'}
             p={3}
             onClick={() => toast.close(toastId)}
           >
