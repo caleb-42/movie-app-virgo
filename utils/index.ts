@@ -27,6 +27,11 @@ export default class Helper {
     return `http://image.tmdb.org/t/p/w${res}/${str}`;
   }
 
+  static isEmptyObj(obj = {}) {
+    for (const _ in obj) return false;
+    return true;
+  }
+
   static breakpoints = (theme, size, dir) =>
     ({
       sm: {

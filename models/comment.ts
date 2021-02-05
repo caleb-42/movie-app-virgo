@@ -1,6 +1,6 @@
-export interface Comment {
-  comment: String;
-  email: String;
+export interface MovieComment {
+  comment: string;
+  email: string;
   movieId: Number;
   userId: Number;
   timeStamp: Number;

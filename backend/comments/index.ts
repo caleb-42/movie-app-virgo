@@ -1,5 +1,5 @@
 import firebase from '../firebase';
-import { Comment } from '../../models/comment';
+import { MovieComment } from '../../models/comment';
 const { database } = firebase;
 
 export default class CommentRoute {
@@ -14,7 +14,24 @@ export default class CommentRoute {
           comment: comment,
           movieId: movieId,
           timeStamp,
-        } as Comment);
+        } as MovieComment);
+      console.log(v);
+      return v;
+    } catch (e) {
+      throw e;
+    }
+  }
+  async editMovieComment(movieId, user, comment, timeStamp) {
+    try {
+      let v = await database()
+        .ref(`comments/${movieId}/${user.uid}-${timeStamp}`)
+        .set({
+          userId: user.uid,
+          email: user.email,
+          comment: comment,
+          movieId: movieId,
+          timeStamp,
+        } as MovieComment);
       console.log(v);
       return v;
     } catch (e) {
@@ -34,9 +51,11 @@ export default class CommentRoute {
       throw e;
     }
   }
-  async removeMovieComment(movieId, userId) {
+  async removeMovieComment(movieId, user, timeStamp) {
     try {
-      return database().ref(`comments/${movieId}/${userId}`).remove();
+      return database()
+        .ref(`comments/${movieId}/${user.uid}-${timeStamp}`)
+        .remove();
     } catch (e) {
       throw e;
     }
