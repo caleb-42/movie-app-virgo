@@ -86,7 +86,7 @@ export default class MoviesRoute {
         method: 'GET',
         host: `${this.host}/${id}/credits?api_key=${key}`,
       });
-      let data = cast?.data?.cast;
+      let data = cast?.data?.cast.splice(0, 10);
       return data;
     } catch (e) {
       return null;

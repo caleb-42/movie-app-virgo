@@ -9,7 +9,9 @@ export const SingleMovieStyle = styled(Box)`
     flex-direction: column;
     align-items: center;
     height: 100%;
-
+    .back-drop {
+      box-shadow: 0 0 200px 200px rgba(3, 3, 3, 0.85) inset;
+    }
     ${({ theme }) => Helper.breakpoints(theme, 'sm', 'up')} {
       padding: 0 2rem;
     }
@@ -36,6 +38,11 @@ export const SingleMovieStyle = styled(Box)`
           }
         }
       }
+    }
+    .bodyp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 `;
