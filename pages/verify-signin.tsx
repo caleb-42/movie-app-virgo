@@ -19,13 +19,9 @@ export default function VerifySignin() {
         Router.replace('/dashboard');
       },
       (err) => {
-        setTimeout(
-          () =>
-            auth.signInWithLink(email).then(
-              (res) => Router.replace('/dashboard'),
-              (err) => Router.replace('/')
-            ),
-          2000
+        auth.signInWithLink(email).then(
+          (res) => Router.replace('/dashboard'),
+          (err) => Router.replace('/')
         );
       }
     );

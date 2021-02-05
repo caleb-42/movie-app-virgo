@@ -1,15 +1,26 @@
-import { useMediaQuery, useTheme } from '@chakra-ui/react';
+import { useTheme } from '@chakra-ui/react';
+import { useMediaQuery } from 'react-responsive';
 
-const useBreakPoints = () => {
+const useBreakPoints = (limit = 'min') => {
   const theme = useTheme();
-  const [sm, md, lg, xl] = useMediaQuery([
-    `(min-width: ${theme.breakpoints['sm']})`,
-    `(min-width: ${theme.breakpoints['md']})`,
-    `(min-width: ${theme.breakpoints['lg']})`,
-    `(min-width: ${theme.breakpoints['xl']})`,
-  ]);
+  const key = `${limit}DeviceWidth`;
+  const xs = useMediaQuery({
+    [key]: theme.breakpoints['base'],
+  });
+  const sm = useMediaQuery({
+    [key]: theme.breakpoints['sm'],
+  });
+  const md = useMediaQuery({
+    [key]: theme.breakpoints['md'],
+  });
+  const lg = useMediaQuery({
+    [key]: theme.breakpoints['lg'],
+  });
+  const xl = useMediaQuery({
+    [key]: theme.breakpoints['xl'],
+  });
 
-  return { sm, md, lg, xl };
+  return { sm, md, lg, xl, xs };
 };
 
 export default useBreakPoints;

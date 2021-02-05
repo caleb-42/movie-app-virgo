@@ -2,14 +2,14 @@ export interface MovieCast {
   adult: boolean;
   gender: Number;
   id: Number;
-  known_for_department: String;
-  name: String;
-  original_name: String;
+  known_for_department: string;
+  name: string;
+  original_name: string;
   popularity: Number;
-  profile_path: String;
+  profile_path: string;
   cast_id: Number;
-  character: String;
-  credit_id: String;
+  character: string;
+  credit_id: string;
   order: Number;
 }
 
@@ -17,59 +17,65 @@ export interface MovieItem {
   adult: boolean;
   id: Number;
   popularity: Number;
-  backdrop_path: String;
+  backdrop_path: string;
   genre_ids: Array<Number>;
-  original_language: String;
-  original_title: String;
-  overview: String;
-  poster_path: String;
-  release_date: String;
-  title: String;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  release_date: string;
+  title: string;
   video: boolean;
   vote_average: Number;
   vote_count: Number;
 }
+export interface MovieList {
+  page: number;
+  results: Array<MovieItem>;
+  total_pages: number;
+  total_results: number;
+}
 
 export interface MovieDetail {
   adult?: boolean;
-  backdrop_path?: String;
+  backdrop_path?: string;
   belongs_to_collection?: {
     id?: Number;
-    name?: String;
-    poster_path?: String;
-    backdrop_path?: String;
+    name?: string;
+    poster_path?: string;
+    backdrop_path?: string;
   };
   budget?: Number;
-  genres?: Array<{ id?: Number; name?: String }>;
-  homepage?: String;
+  genres?: Array<{ id?: Number; name?: string }>;
+  homepage?: string;
   id?: Number;
-  imdb_id?: String;
-  original_language?: String;
-  original_title?: String;
-  overview?: String;
+  imdb_id?: string;
+  original_language?: string;
+  original_title?: string;
+  overview?: string;
   popularity?: Number;
-  poster_path?: String;
+  poster_path?: string;
   production_companies?: Array<{
     id?: Number;
-    logo_path?: String;
-    name?: String;
-    origin_country?: String;
+    logo_path?: string;
+    name?: string;
+    origin_country?: string;
   }>;
   production_countries?: Array<{
-    iso_3166_1?: String;
-    name?: String;
+    iso_3166_1?: string;
+    name?: string;
   }>;
-  release_date?: String;
+  release_date?: string;
   revenue?: Number;
   runtime?: Number;
   spoken_languages?: Array<{
-    english_name?: String;
-    iso_639_1?: String;
-    name?: String;
+    english_name?: string;
+    iso_639_1?: string;
+    name?: string;
   }>;
-  status?: String;
-  tagline?: String;
-  title?: String;
+  status?: string;
+  tagline?: string;
+  title?: string;
   video?: boolean;
   vote_average?: Number;
   vote_count?: Number;

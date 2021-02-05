@@ -18,7 +18,6 @@ export default function ULTextField({
   const styles = useStyleConfig('Input', {});
   //const color = useColorModeValue('white', 'white');
 
-  console.log('params', params);
   return (
     <Input
       sx={styles}

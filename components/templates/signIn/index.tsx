@@ -91,7 +91,7 @@ export default function SignIn() {
                 value="Volgi"
               />
               <Box p="1" mx="auto" className="movies">
-                <ULText value="MOVIES" />
+                <ULText color="#fff" value="MOVIES" />
               </Box>
             </Box>
             <Box w="100%" h="50%" className="form-con" flexDir="column">
@@ -119,7 +119,7 @@ export default function SignIn() {
                   value="Volgi"
                 />
                 <Box p="1" className="movies">
-                  <ULText value="MOVIES" />
+                  <ULText color="#fff" value="MOVIES" />
                 </Box>
               </Box>
 
