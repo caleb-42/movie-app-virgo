@@ -1,20 +1,20 @@
 import { Box, Skeleton, Switch, useColorMode } from '@chakra-ui/react';
 import React from 'react';
 import { useRouter } from 'next/router';
-import AuthRoute from '../../../backend/auth';
-import ULButton from '../../atoms/Button';
-import ULHeading from '../../atoms/Heading';
-import ULText from '../../atoms/Text';
-import MoviesRoute, { MovieCategory } from '../../../backend/movies';
-import ULSlider from '../../molecules/carousel';
-import { DashboardStyle } from './style';
-import Logo from '../../icons/Logo';
-import useBreakPoints from '../../../hooks/useBreakPoints';
-import Rerender from '../../../utils/Rerender';
+import AuthRoute from '../../backend/auth';
+import ULButton from '../atoms/Button';
+import ULHeading from '../atoms/Heading';
+import ULText from '../atoms/Text';
+import MoviesRoute, { MovieCategory } from '../../backend/movies';
+import ULSlider from '../molecules/carousel';
+import { DashboardStyle } from '../templates/dashboard/style';
+import Logo from '../icons/Logo';
+import useBreakPoints from '../../hooks/useBreakPoints';
+import Rerender from '../../utils/Rerender';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import MovieSlider from './MovieSlider';
-import Header from '../../molecules/Header';
-import MovieClip from './MovieClip';
+import Header from '../molecules/Header';
+import MovieClip from '../molecules/MovieClip';
 
 export default function MovieList({ list = [], title }) {
   const Router = useRouter();

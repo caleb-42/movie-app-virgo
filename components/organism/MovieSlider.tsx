@@ -1,10 +1,10 @@
 import { Box } from '@chakra-ui/react';
 import React from 'react';
-import useBreakPoints from '../../../hooks/useBreakPoints';
-import Rerender from '../../../utils/Rerender';
-import ULHeading from '../../atoms/Heading';
-import ULSlider from '../../molecules/carousel';
-import MovieClip from './MovieClip';
+import useBreakPoints from '../../hooks/useBreakPoints';
+import Rerender from '../../utils/Rerender';
+import ULHeading from '../atoms/Heading';
+import ULSlider from '../molecules/carousel';
+import MovieClip from '../molecules/MovieClip';
 
 export default function MovieSlider({ list, title, activeNo = 0 }) {
   const { xs, md, lg, sm } = useBreakPoints('max');

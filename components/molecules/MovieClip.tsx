@@ -1,10 +1,11 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import useBreakPoints from '../../../hooks/useBreakPoints';
-import { MovieItem } from '../../../models/movie';
-import Helper from '../../../utils';
-import ULButton from '../../atoms/Button';
-import ULText from '../../atoms/Text';
+import Router from 'next/router';
+import useBreakPoints from '../../hooks/useBreakPoints';
+import { MovieItem } from '../../models/movie';
+import Helper from '../../utils';
+import ULButton from '../atoms/Button';
+import ULText from '../atoms/Text';
 
 export default function MovieClip({ movie, height = '300px', index = 0 }) {
   const { sm, md } = useBreakPoints();
@@ -61,6 +62,7 @@ export default function MovieClip({ movie, height = '300px', index = 0 }) {
             fontSize=".9rem"
             width="7rem"
             variant="solid"
+            onClick={() => Router.push(`/movie/${movieItem.id}`)}
             borderRadius="5rem"
             props={{ className: 'more-btn' }}
           >
