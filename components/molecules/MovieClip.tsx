@@ -1,17 +1,70 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import useBreakPoints from '../../../hooks/useBreakPoints';
-import { MovieItem } from '../../../models/movie';
-import Helper from '../../../utils';
-import ULButton from '../../atoms/Button';
-import ULText from '../../atoms/Text';
+import Router from 'next/router';
+import useBreakPoints from '../../hooks/useBreakPoints';
+import { MovieItem } from '../../models/movie';
+import Helper from '../../utils';
+import ULButton from '../atoms/Button';
+import ULText from '../atoms/Text';
 
-export default function MovieClip({ movie, height = '300px', index = 0 }) {
+export default function MovieClip({
+  movie,
+  height = '300px',
+  subOverview = 150,
+  index = 0,
+  deactivate = false,
+}) {
   const { sm, md } = useBreakPoints();
   const bg = useColorModeValue('#ddd', '#222');
   const color = useColorModeValue('#222', '#fff');
   const movieItem = movie as MovieItem;
 
+  const Style = styled(Box)`
+    & {
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.4s ease-out;
+      background-color: #000;
+      ${({ theme }) => Helper.breakpoints(theme, 'sm', 'down')} {
+        .back {
+          padding: 2rem;
+        }
+        .overview {
+          margin-top: 1rem;
+        }
+      }
+      .tab {
+        transition: all 0.7s ease-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .back {
+        padding: 1rem;
+      }
+      .overview {
+        margin-top: 0.5rem;
+        height: 150px;
+        oveflow: hidden;
+      }
+      button.more-btn {
+        color: #fff;
+        background: ${(props: any) => props.theme.colors.primaryColor.main};
+      }
+      box-shadow: 0 0 200px 200px rgba(3, 3, 3, 0) inset;
+      ${deactivate
+        ? ''
+        : `&:hover {
+        box-shadow: 0 0 200px 200px rgba(3, 3, 3, 0.8) inset;
+        .back {
+          opacity: 1;
+        }
+        .tab {
+          bottom: -50px;
+        }
+      }`}
+    }
+  `;
   return (
     <Style
       boxShadow="2xl"
@@ -54,13 +107,18 @@ export default function MovieClip({ movie, height = '300px', index = 0 }) {
           fontWeight="500"
           align="center"
         >
-          {`${movieItem.overview.substring(0, 150)}...`}
+          {`${
+            subOverview
+              ? movieItem.overview.substring(0, subOverview)
+              : movieItem.overview
+          }...`}
         </Box>
         <Box>
           <ULButton
             fontSize=".9rem"
             width="7rem"
             variant="solid"
+            onClick={() => Router.push(`/movie/${movieItem.id}`)}
             borderRadius="5rem"
             props={{ className: 'more-btn' }}
           >
@@ -89,48 +147,3 @@ export default function MovieClip({ movie, height = '300px', index = 0 }) {
     </Style>
   );
 }
-
-const Style = styled(Box)`
-  & {
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.4s ease-out;
-    background-color: #000;
-    ${({ theme }) => Helper.breakpoints(theme, 'sm', 'down')} {
-      .back {
-        padding: 2rem;
-      }
-      .overview {
-        margin-top: 1rem;
-      }
-    }
-    .tab {
-      transition: all 0.7s ease-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .back {
-      padding: 1rem;
-    }
-    .overview {
-      margin-top: 0.5rem;
-      height: 150px;
-      oveflow: hidden;
-    }
-    button.more-btn {
-      color: #fff;
-      background: ${(props: any) => props.theme.colors.primaryColor.main};
-    }
-    box-shadow: 0 0 200px 200px rgba(3, 3, 3, 0) inset;
-    &:hover {
-      box-shadow: 0 0 200px 200px rgba(3, 3, 3, 0.8) inset;
-      .back {
-        opacity: 1;
-      }
-      .tab {
-        bottom: -50px;
-      }
-    }
-  }
-`;

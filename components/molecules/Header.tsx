@@ -1,4 +1,4 @@
-import { HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
 import lodash from 'lodash';
 import {
   Box,
@@ -22,7 +22,7 @@ import ULText from '../atoms/Text';
 import ULTextField from '../atoms/TextField';
 import Logo from '../icons/Logo';
 
-export default function Header({ onSearch }) {
+export default function Header({ onSearch, promptSearch = false }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { md, sm } = useBreakPoints();
   const theme = useTheme();
@@ -58,6 +58,8 @@ export default function Header({ onSearch }) {
     <Box
       className="header"
       w="100%"
+      pos="relative"
+      zIndex="20"
       display="flex"
       justifyContent="space-between"
       alignItems="center"
@@ -72,9 +74,9 @@ export default function Header({ onSearch }) {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Logo />
+          <Logo navigate={() => Router.push('/dashboard')} />
           <Box display="flex" height="100%" alignItems="center">
-            <Box hidden={!md} w="300px" mr={5}>
+            <Box hidden={!md || promptSearch} w="300px" mr={5}>
               <ULTextField
                 onChange={(e) => change('search', e)}
                 width="100%"
@@ -82,6 +84,13 @@ export default function Header({ onSearch }) {
                 placeholder="Search"
                 props={{ name: 'search' }}
               />
+            </Box>
+            <Box
+              hidden={!promptSearch}
+              mr="1.5rem"
+              onClick={() => Router.push('/dashboard')}
+            >
+              <SearchIcon width="1.5rem" height="1.5rem" />
             </Box>
             <Menu closeOnSelect={false}>
               <MenuButton
@@ -147,7 +156,7 @@ export default function Header({ onSearch }) {
             </Menu>
           </Box>
         </Box>
-        <Box hidden={md} w="100%" my={5}>
+        <Box hidden={md || promptSearch} w="100%" my={5}>
           <ULTextField
             onChange={(e) => change('search', e)}
             width="100%"

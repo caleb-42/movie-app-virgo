@@ -7,7 +7,7 @@ export default interface ITypography {
   fontWeight?: string;
   isTruncated?: boolean;
   fontSize?: string;
-  align?: 'center' | 'left' | 'right';
+  align?: 'center' | 'left' | 'right' | 'justify';
   css?: string;
   style?: React.CSSProperties;
   props?: TextProps;

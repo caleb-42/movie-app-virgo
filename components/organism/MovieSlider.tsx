@@ -1,12 +1,12 @@
 import { Box } from '@chakra-ui/react';
 import React from 'react';
-import useBreakPoints from '../../../hooks/useBreakPoints';
-import Rerender from '../../../utils/Rerender';
-import ULHeading from '../../atoms/Heading';
-import ULSlider from '../../molecules/carousel';
-import MovieClip from './MovieClip';
+import useBreakPoints from '../../hooks/useBreakPoints';
+import Rerender from '../../utils/Rerender';
+import ULHeading from '../atoms/Heading';
+import ULSlider from '../molecules/carousel';
+import MovieClip from '../molecules/MovieClip';
 
-export default function MovieSlider({ list, title, activeNo = 0 }) {
+export default function MovieSlider({ list, title, activeNo = 0, render }) {
   const { xs, md, lg, sm } = useBreakPoints('max');
 
   const [items, setItems] = React.useState(1);
@@ -16,10 +16,10 @@ export default function MovieSlider({ list, title, activeNo = 0 }) {
     else if (!sm) setItems(2);
     else setItems(1);
   }, [lg, md, sm]);
-  console.log(sm, md, lg);
+  console.log(sm, md, list);
   return (
     <Box
-      height={md ? '400px' : '490px'}
+      height={md ? '460px' : '400px'}
       className="carousel-con"
       w="100%"
       maxW="1200px"
@@ -34,15 +34,9 @@ export default function MovieSlider({ list, title, activeNo = 0 }) {
             list={list}
             slidesToScroll={1}
             activeNo={activeNo}
-            loaderHeight={sm ? '300px' : '400px'}
+            loaderHeight={md ? '300px' : '400px'}
             itemsNo={items}
-            render={(item, index) => (
-              <MovieClip
-                height={md ? '300px' : '400px'}
-                index={index}
-                movie={item}
-              />
-            )}
+            render={(item, index) => render(item, index)}
           />
         )}
       />
