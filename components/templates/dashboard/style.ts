@@ -18,11 +18,11 @@ export const DashboardStyle = styled(Box)`
       &-header {
         h3 {
           font-size: 20px;
-          font-weight: 500;
+          font-weight: 600;
         }
       }
       &-con {
-        margin-top: 1rem;
+        margin-top: 2rem;
       }
       ${({ theme }) => Helper.breakpoints(theme, 'sm', 'up')} {
         &-con {

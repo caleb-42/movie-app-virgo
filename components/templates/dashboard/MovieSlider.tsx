@@ -6,19 +6,20 @@ import ULHeading from '../../atoms/Heading';
 import ULSlider from '../../molecules/carousel';
 import MovieClip from './MovieClip';
 
-export default function MovieSlider({ list, title }) {
-  const { md, lg, sm } = useBreakPoints();
+export default function MovieSlider({ list, title, activeNo = 0 }) {
+  const { xs, md, lg, sm } = useBreakPoints('max');
 
   const [items, setItems] = React.useState(1);
   React.useEffect(() => {
-    if (lg) setItems(5);
-    else if (md) setItems(3);
+    if (!lg) setItems(5);
+    else if (!md) setItems(3);
+    else if (!sm) setItems(2);
     else setItems(1);
-  }, [lg, md]);
-
+  }, [lg, md, sm]);
+  console.log(sm, md, lg);
   return (
     <Box
-      height="400px"
+      height={md ? '400px' : '490px'}
       className="carousel-con"
       w="100%"
       maxW="1200px"
@@ -32,9 +33,16 @@ export default function MovieSlider({ list, title }) {
           <ULSlider
             list={list}
             slidesToScroll={1}
-            loaderHeight={sm ? '300px' : '330px'}
+            activeNo={activeNo}
+            loaderHeight={sm ? '300px' : '400px'}
             itemsNo={items}
-            render={(item, index) => <MovieClip index={index} movie={item} />}
+            render={(item, index) => (
+              <MovieClip
+                height={md ? '300px' : '400px'}
+                index={index}
+                movie={item}
+              />
+            )}
           />
         )}
       />

@@ -13,19 +13,36 @@ const ULSlider = ({
   list = [],
   itemWidth = '20%',
   rightChevron = (
-    <Box zIndex="5" className="right-arrow" position="relative" left="-4rem">
-      <ChevronRightIcon w={10} h={10} opacity={0.5} />
+    <Box
+      zIndex="5"
+      p={1}
+      bg="rgba(3,3,3,.3)"
+      borderRadius="3rem"
+      className="right-arrow"
+      position="relative"
+      left="-4rem"
+    >
+      <ChevronRightIcon w={10} h={10} />
     </Box>
   ),
   leftChevron = (
-    <Box zIndex="5" className="right-arrow" position="relative" right="-4rem">
-      <ChevronLeftIcon w={10} h={10} opacity={0.5} />
+    <Box
+      zIndex="5"
+      p={1}
+      bg="rgba(3,3,3,.3)"
+      borderRadius="3rem"
+      className="left-arrow"
+      position="relative"
+      right="-4rem"
+    >
+      <ChevronLeftIcon w={10} h={10} />
     </Box>
   ),
   render = (t, i) => <Box />,
 }) => {
   const [items, setItems] = React.useState(itemsNo);
   const [active, setActive] = React.useState(activeNo);
+  console.log(list);
   return (
     <Box
       className="body"
@@ -34,13 +51,6 @@ const ULSlider = ({
       w="100%"
       marginBottom="4rem"
     >
-      <Box
-        zIndex="1"
-        /* css="background-image:linear-gradient(to right, rgba(255,255,255,0) , rgba(255,255,255,1)); background-image: -webkit-linear-gradient(to right, rgba(255,255,255,0) , rgba(255,255,255,1));" */
-        height="100%"
-        position="absolute"
-        width={itemWidth}
-      />
       <ItemsCarousel
         infiniteLoop
         gutter={gutter}

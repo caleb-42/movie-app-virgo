@@ -27,18 +27,8 @@ export default function MovieList({ list = [], title }) {
     else setItems(1);
   }, [lg, md]);
 
-  React.useEffect(() => {
-    console.log();
-  }, []);
-
   return (
-    <Box
-      height="400px"
-      className="carousel-con"
-      w="100%"
-      maxW="1200px"
-      mx="auto"
-    >
+    <Box className="carousel-con" w="100%" maxW="1200px" mx="auto">
       <Box w="100%" mb="1rem" className="carousel-header">
         <ULHeading type="h3" align="center" value={title} size="sm" />
       </Box>
@@ -48,17 +38,17 @@ export default function MovieList({ list = [], title }) {
         alignItems="flex-start"
         display="flex"
         flexWrap="wrap"
-        minH="900px"
+        minH="600px"
       >
         {(list?.length > 0 ? list : Array.from(Array(12).values())).map(
           (item, ind) => {
             console.log(item);
             return (
-              <Box h="300px" w={`${100 / items}%`} p=".5rem">
+              <Box h="400px" w={`${100 / items}%`} p="1rem" mb="3rem">
                 {!item ? (
                   <Skeleton height="100%" />
                 ) : (
-                  <MovieClip index={ind} movie={item} />
+                  <MovieClip height="380px" index={ind} movie={item} />
                 )}
               </Box>
             );

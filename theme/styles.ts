@@ -5,7 +5,7 @@ export const global = (props) => ({
     fontFamily: 'body',
     height: '100%',
     color: mode('#757575', 'whiteAlpha.900')(props),
-    bg: mode('#fff', '#000')(props),
+    bg: mode('#fff', '#080808')(props),
     lineHeight: 'base',
   },
   '#__next': {

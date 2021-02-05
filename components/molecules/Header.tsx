@@ -1,4 +1,5 @@
 import { HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import lodash from 'lodash';
 import {
   Box,
   Button,
@@ -41,12 +42,16 @@ export default function Header({ onSearch }) {
     },
   });
 
+  const debounceSearch = React.useMemo(
+    () => lodash.throttle((val) => onSearch(val), 3000),
+    []
+  );
   const change = (name, e) => {
     console.log(name, e);
     e.persist();
     formik.handleChange(e);
     formik.setFieldTouched(name, true, false);
-    onSearch(e.target.value);
+    debounceSearch(e.target.value);
   };
 
   return (
