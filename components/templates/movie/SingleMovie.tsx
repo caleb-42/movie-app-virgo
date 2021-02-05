@@ -17,6 +17,7 @@ import ULHeading from '../../atoms/Heading';
 import CastClip from '../../molecules/CastClip';
 import useBreakPoints from '../../../hooks/useBreakPoints';
 import ULSlider from '../../molecules/carousel';
+import CommentListTemplate from '../comments/CommentList';
 
 export default function SingleMovieTemplate({ user }) {
   const Router = useRouter();
@@ -74,7 +75,12 @@ export default function SingleMovieTemplate({ user }) {
         </Box>
         <Box w="100%" maxW="1200px" px="2rem" className="bodyp">
           <Box mt="200px">
-            <ULHeading align="center" size="sm" fontWeight="600" value={singleMovie.title} />
+            <ULHeading
+              align="center"
+              size="sm"
+              fontWeight="600"
+              value={singleMovie.title}
+            />
           </Box>
           <Box maxW="500px" mt="1.5rem">
             <ULText
@@ -98,6 +104,7 @@ export default function SingleMovieTemplate({ user }) {
               render={(item, index) => <CastClip key={index} cast={item} />}
             />
           </Box>
+          <CommentListTemplate movie={singleMovie} user={user} />
         </Box>
         <SearchTemplate
           search={search}
@@ -105,7 +112,7 @@ export default function SingleMovieTemplate({ user }) {
           movies={movies}
           page={page}
         />
-      </SingleMovieStyle>{' '}
+      </SingleMovieStyle>
     </>
   ) : (
     <Box
