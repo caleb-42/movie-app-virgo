@@ -1,5 +1,11 @@
 import React from 'react';
-import { Box, Button, Image, Textarea } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Image,
+  Textarea,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { EditCommentStyle, EditBoxStyle } from './style';
 import assets from '../../../utils/assets';
 import * as Yup from 'yup';
@@ -20,6 +26,7 @@ export default function EditComment({
   let item = comment as MovieComment;
   const [isLoading, setLoading] = React.useState(false);
   const [editMode, setEditMode] = React.useState(false);
+  const color = useColorModeValue('#757575', '#fff');
   let commentApi = new CommentRoute();
   const { sm } = useBreakPoints();
 
@@ -84,7 +91,7 @@ export default function EditComment({
         <Image src={assets.profile} width="40px" height="40px" />
         <Box ml="1rem" w="100%" display="flex" flexDir="column">
           <ULText
-            color={canEdit ? 'primaryColor.main' : '#fff'}
+            color={canEdit ? 'primaryColor.main' : color}
             fontSize=".9rem"
             fontWeight="600"
             value={item.email}
