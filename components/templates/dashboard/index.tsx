@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Spinner } from '@chakra-ui/react';
 import React from 'react';
 import { useRouter } from 'next/router';
 import { Pagination } from '@material-ui/lab';
@@ -16,8 +16,8 @@ import MovieClip from '../../molecules/MovieClip';
 import useBreakPoints from '../../../hooks/useBreakPoints';
 
 export default function DashboardTemplate({ user }) {
-  const Router = useRouter();
   const { md } = useBreakPoints();
+  const [loading, setLoading] = React.useState(false);
   const { handleChange, movies, page, search, setSearch } = useSearch();
   const [popularMovies, setPopularMovies] = React.useState({} as MList);
   const [topRatedMovies, setTopRatedMovies] = React.useState({} as MList);
@@ -29,21 +29,31 @@ export default function DashboardTemplate({ user }) {
     console.log(user);
     AuthRoute.win = window;
     let movieapi = new MoviesRoute();
-    movieapi.getMovies(MovieCategory.POPULAR, 1).then((res) => {
-      setPopularMovies(res);
-    });
-    movieapi.getMovies(MovieCategory.TOP_RATED, 1).then((res) => {
-      setTopRatedMovies(res);
-    });
-    movieapi.getMovies(MovieCategory.UPCOMING, 1).then((res) => {
-      setUpcomingMovies(res);
-    });
-    movieapi.getMovies(MovieCategory.NOW_PLAYING, 1).then((res) => {
-      setNowPlayingMovies(res);
+    setLoading(true);
+    Promise.all([
+      movieapi.getMovies(MovieCategory.POPULAR, 1),
+      movieapi.getMovies(MovieCategory.TOP_RATED, 1),
+      movieapi.getMovies(MovieCategory.UPCOMING, 1),
+      movieapi.getMovies(MovieCategory.NOW_PLAYING, 1),
+    ]).then(({ 0: popM, 1: topM, 2: upcomingM, 3: nowM }) => {
+      setLoading(false);
+      setPopularMovies(popM);
+      setTopRatedMovies(topM);
+      setUpcomingMovies(upcomingM);
+      setNowPlayingMovies(nowM);
     });
   }, []);
 
-  return (
+  return loading ? (
+    <Box
+      height="100%"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Spinner size="xl" />
+    </Box>
+  ) : (
     <DashboardStyle>
       <Header
         onSearch={(val) => {

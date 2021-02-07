@@ -22,7 +22,7 @@ export default function MovieSlider({ list, title, activeNo = 0, render }) {
       height={md ? '460px' : '400px'}
       className="carousel-con"
       w="100%"
-      maxW="1200px"
+      maxW="1500px"
       mx="auto"
     >
       <Box w="100%" mb="1rem" className="carousel-header">

@@ -9,6 +9,8 @@ export const DashboardStyle = styled(Box)`
     flex-direction: column;
     align-items: center;
     height: 100%;
+    -webkit-animation: appear 1s ease-in-out;
+    animation: appear 1s ease-in-out;
 
     ${({ theme }) => Helper.breakpoints(theme, 'sm', 'up')} {
       padding: 0 2rem;
@@ -35,6 +37,15 @@ export const DashboardStyle = styled(Box)`
             text-align: left;
           }
         }
+      }
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
       }
     }
   }
