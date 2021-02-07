@@ -4,8 +4,8 @@ import MoviesRoute from '../backend/movies';
 import MovieList from '../components/organism/MovieList';
 import { MovieList as MList } from '../models/movie';
 
-export default function useSearch() {
-  const [search, setSearch] = React.useState('');
+export default function useSearch(val = '') {
+  const [search, setSearch] = React.useState(val);
   const [page, setPage] = React.useState(1);
   const [movies, setMovies] = React.useState({} as MList);
 

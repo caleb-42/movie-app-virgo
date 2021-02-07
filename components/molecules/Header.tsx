@@ -21,12 +21,29 @@ import ULButton from '../atoms/Button';
 import ULText from '../atoms/Text';
 import ULTextField from '../atoms/TextField';
 import Logo from '../icons/Logo';
+import Helper from '../../utils';
 
 export default function Header({ onSearch, promptSearch = false }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { md, sm } = useBreakPoints();
   const theme = useTheme();
   const Router = useRouter();
+  const {
+    query: { q },
+    pathname,
+  } = Router;
+  console.log('basePath', pathname);
+  const updateQuery = (newQuery) => {
+    //val == '' ? { q: encodeURI(val) } : null
+    if (newQuery !== undefined) {
+      Router[q ? 'replace' : 'push'](`?q=${newQuery}`, undefined, {
+        shallow: true,
+      });
+    } else {
+      //Router.replace(pathname);
+    }
+  };
+
   const signOut = () => {
     var auth = new AuthRoute();
     auth.SignOut();
@@ -35,15 +52,18 @@ export default function Header({ onSearch, promptSearch = false }) {
 
   const formik = useFormik({
     initialValues: {
-      search: '',
+      search: decodeURI(q as string),
     },
     onSubmit: (values) => {
       onSearch(values.search);
     },
   });
-
   const debounceSearch = React.useMemo(
-    () => lodash.throttle((val) => onSearch(val), 3000),
+    () =>
+      lodash.throttle((val) => {
+        onSearch(val);
+        updateQuery(val);
+      }, 3000),
     []
   );
   const change = (name, e) => {
@@ -53,6 +73,14 @@ export default function Header({ onSearch, promptSearch = false }) {
     formik.setFieldTouched(name, true, false);
     debounceSearch(e.target.value);
   };
+
+  React.useEffect(() => {
+    if (q) onSearch(decodeURI(q as string));
+    else {
+      onSearch('');
+      change('search', Helper.fakeEvent('search', ''));
+    }
+  }, [q]);
 
   return (
     <Box
@@ -65,7 +93,7 @@ export default function Header({ onSearch, promptSearch = false }) {
       alignItems="center"
       flexDirection="column"
       px={sm ? '0' : '1rem'}
-      maxW="1200px"
+      maxW="1500px"
     >
       <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
         <Box

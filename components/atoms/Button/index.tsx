@@ -16,7 +16,6 @@ export default function ULButton({
   const styles = useStyleConfig('Button', { colorScheme });
   const color = useColorModeValue('white', 'white');
 
-  console.log('params', params);
   return (
     <Button
       sx={styles}

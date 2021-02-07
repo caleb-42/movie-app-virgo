@@ -32,6 +32,14 @@ export default class Helper {
     return true;
   }
 
+  static fakeEvent(name, value, ...rest) {
+    return {
+      target: { name, value },
+      persist: (_) => _,
+      selected: rest[0],
+      ...rest[0],
+    };
+  }
   static breakpoints = (theme, size, dir) =>
     ({
       sm: {
