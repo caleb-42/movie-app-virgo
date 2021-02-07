@@ -78,7 +78,7 @@ export default function CommentListTemplate({ user, movie }) {
           <ULHeading type="h3" value="Comments" />
         </Box>
       </Box>
-      <Box w="100%" maxW="1500px" className="carousel-con">
+      <Box w="100%" maxW="1200px" className="carousel-con">
         <Box>
           <ULText
             align="left"

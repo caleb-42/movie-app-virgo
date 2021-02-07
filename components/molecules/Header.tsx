@@ -92,7 +92,7 @@ export default function Header({ onSearch, promptSearch = false }) {
       alignItems="center"
       flexDirection="column"
       px={sm ? '0' : '1rem'}
-      maxW="1500px"
+      maxW="1200px"
     >
       <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
         <Box
