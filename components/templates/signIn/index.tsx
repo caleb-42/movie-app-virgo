@@ -76,7 +76,7 @@ export default function SignIn() {
         w="100%"
       >
         <Box w="100%" mb="10rem">
-          <Box className="signin-body" mx="auto" maxW="1500px" w="100%">
+          <Box className="signin-body" mx="auto" maxW="1200px" w="100%">
             <Box
               className="volgi-in-head-left"
               justifyContent="center"

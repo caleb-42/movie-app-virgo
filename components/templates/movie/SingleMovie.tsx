@@ -64,7 +64,7 @@ export default function SingleMovieTemplate({ user }) {
           )})`}
           position="absolute"
           h="500px"
-          maxW="1300px"
+          maxW="1600px"
           bgRepeat="no-repeat"
           backgroundSize="cover"
           backgroundPosition="50%"
@@ -73,7 +73,7 @@ export default function SingleMovieTemplate({ user }) {
         <Box w="250px" h="400px" pos="relative" top="150px">
           <MovieClip deactivate movie={singleMovie} height="100%" />
         </Box>
-        <Box w="100%" maxW="1500px" px="2rem" className="bodyp">
+        <Box w="100%" maxW="1200px" px="2rem" className="bodyp">
           <Box mt="200px">
             <ULHeading
               align="center"

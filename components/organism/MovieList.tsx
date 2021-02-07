@@ -28,7 +28,7 @@ export default function MovieList({ list = [], title }) {
   }, [lg, md]);
 
   return (
-    <Box className="carousel-con" w="100%" maxW="1500px" mx="auto">
+    <Box className="carousel-con" w="100%" maxW="1200px" mx="auto">
       <Box w="100%" mb="1rem" className="carousel-header">
         <ULHeading type="h3" align="center" value={title} size="sm" />
       </Box>
