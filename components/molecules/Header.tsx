@@ -30,18 +30,17 @@ export default function Header({ onSearch, promptSearch = false }) {
   const Router = useRouter();
   const {
     query: { q },
+    asPath,
+    basePath,
     pathname,
   } = Router;
-  console.log('basePath', pathname);
+  console.log(basePath, pathname, asPath);
   const updateQuery = (newQuery) => {
-    //val == '' ? { q: encodeURI(val) } : null
-    if (newQuery !== undefined) {
-      Router[q ? 'replace' : 'push'](`?q=${newQuery}`, undefined, {
-        shallow: true,
+    if (newQuery !== undefined && pathname === '/dashboard')
+      Router.push({
+        pathname: '/dashboard',
+        query: newQuery,
       });
-    } else {
-      //Router.replace(pathname);
-    }
   };
 
   const signOut = () => {
@@ -62,7 +61,7 @@ export default function Header({ onSearch, promptSearch = false }) {
     () =>
       lodash.throttle((val) => {
         onSearch(val);
-        updateQuery(val);
+        updateQuery(val ? { q: encodeURI(val) } : null);
       }, 3000),
     []
   );
